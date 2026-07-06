@@ -1,0 +1,32 @@
+# Clase base Pago
+class Pago:
+    def procesarPago(self):
+        raise NotImplementedError("Este método debe ser sobrescrito por las subclases")
+
+
+# Clase TarjetaCredito
+class TarjetaCredito(Pago):
+    def procesarPago(self):
+        return "Pago procesado con tarjeta de crédito."
+
+
+# Clase PayPal
+class PayPal(Pago):
+    def procesarPago(self):
+        return "Pago procesado con PayPal."
+
+
+def main():
+    pagos = [
+        TarjetaCredito(),
+        PayPal(),
+        TarjetaCredito(),
+        PayPal()
+    ]
+
+    for pago in pagos:
+        print(f"{pago.__class__.__name__}: {pago.procesarPago()}")
+
+
+if __name__ == "__main__":
+    main()
